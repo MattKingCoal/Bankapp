@@ -1,0 +1,22 @@
+!contents -R2 -g -p -f -h
+
+!***> Classpath
+!define TEST_SYSTEM {slim}
+!path C:\Users\kingma\Eclipse Workspaces\match\Bankapp\target\test-classes;
+!path C:\Users\kingma\Eclipse Workspaces\match\Bankapp\target\**.jar
+*!
+ 
+!***> Import packages
+| import |
+| com.match.bank.app.fixtures |
+*! 
+
+
+
+!| script | FullFunctionalityWebTest |
+| ensure | open account for user | 20327866 | with amount | 500 | succeeds |
+| check | balance of newly opened account | 500|
+| ensure | after withdrawal of | 50 | from account balance equals | 450 |
+| ensure | after deposit of | 1000 | to account balance equals | 1450 |
+| ensure | delete accounts for user | 20327866 | succeeds |
+| ensure | retrieve accounts for user | 20327866 | returns no accounts|

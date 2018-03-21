@@ -1,0 +1,8 @@
+<!ELEMENT bankdata (origin, accounts)>
+<!ELEMENT account (account-id, user-id, balance, account-type)>
+<!ELEMENT accounts (account*)>
+<!ELEMENT account-id (#PCDATA)>
+<!ELEMENT user-id (#PCDATA)>
+<!ELEMENT balance (#PCDATA)>
+<!ELEMENT account-type (#PCDATA)>
+<!ELEMENT origin (#PCDATA)>
