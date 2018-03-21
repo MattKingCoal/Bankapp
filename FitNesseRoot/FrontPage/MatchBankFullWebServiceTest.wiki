@@ -2,8 +2,8 @@
 
 !***> Classpath
 !define TEST_SYSTEM {slim}
-!path C:\Users\kingma\Eclipse Workspaces\match\Bankapp\target\test-classes;
-!path C:\Users\kingma\Eclipse Workspaces\match\Bankapp\target\**.jar
+!path C:\Users\kingma\gitHub\Bankapp\target\test-classes;
+!path C:\Users\kingma\gitHub\Bankapp\target\**.jar
 *!
  
 !***> Import packages
