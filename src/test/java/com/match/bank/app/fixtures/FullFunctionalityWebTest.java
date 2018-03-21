@@ -57,37 +57,34 @@ public class FullFunctionalityWebTest {
         return bal;
     }
 
-    public boolean afterWithdrawalOfFromAccountBalanceEquals(int amount, int balance)
-            throws IOException, JDOMException {
+    public int afterWithdrawalOfFromAccountBalanceIs(int amount) throws IOException, JDOMException {
         SAXBuilder builder = new SAXBuilder(XMLReaders.DTDVALIDATING);
         String urlStr = urlStub + "withdraw?aid=" + accountId + "&amount=" + amount;
         HttpURLConnection con = (HttpURLConnection) new URL(urlStr).openConnection();
         con.setRequestMethod("POST");
-        boolean success;
+        int bal;
         try (InputStream is = con.getInputStream()) {
             Document doc = builder.build(is);
             Element root = doc.getRootElement();
             Element aE = root.getChild("accounts").getChildren().get(0);
-            int bal = new BigDecimal(aE.getChildText("balance")).intValue();
-            success = (bal == balance);
+            bal = new BigDecimal(aE.getChildText("balance")).intValue();
         }
-        return success;
+        return bal;
     }
 
-    public boolean afterDepositOfToAccountBalanceEquals(int amount, int balance) throws JDOMException, IOException {
+    public int afterDepositOfToAccountBalanceIs(int amount) throws JDOMException, IOException {
         SAXBuilder builder = new SAXBuilder(XMLReaders.DTDVALIDATING);
         String urlStr = urlStub + "deposit?aid=" + accountId + "&amount=" + amount;
         HttpURLConnection con = (HttpURLConnection) new URL(urlStr).openConnection();
         con.setRequestMethod("POST");
-        boolean success;
+        int bal;
         try (InputStream is = con.getInputStream()) {
             Document doc = builder.build(is);
             Element root = doc.getRootElement();
             Element aE = root.getChild("accounts").getChildren().get(0);
-            int bal = new BigDecimal(aE.getChildText("balance")).intValue();
-            success = (bal == balance);
+            bal = new BigDecimal(aE.getChildText("balance")).intValue();
         }
-        return success;
+        return bal;
     }
 
     public boolean deleteAccountsForUserSucceeds(int ssid) throws JDOMException, IOException {
@@ -105,16 +102,16 @@ public class FullFunctionalityWebTest {
         return (responseCode == 200);
     }
 
-    public boolean retrieveAccountsForUserReturnsNoAccounts(int ssid) throws Exception {
+    public int retrieveAccountsForUserReturns(int ssid) throws Exception {
         SAXBuilder builder = new SAXBuilder(XMLReaders.DTDVALIDATING);
         String urlStr = urlStub + "accounts?ssid=" + ssid;
-        boolean success;
+        int size;
         try (InputStream is = new URL(urlStr).openStream()) {
             Document doc = builder.build(is);
             Element root = doc.getRootElement();
             List<Element> aEls = root.getChild("accounts").getChildren();
-            success = aEls.isEmpty();
+            size = aEls.size();
         }
-        return success;
+        return size;
     }
 }
