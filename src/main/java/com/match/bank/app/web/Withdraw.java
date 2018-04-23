@@ -18,7 +18,7 @@ import com.match.bank.exception.AccountNotFoundException;
 import com.match.bank.exception.DataLayerException;
 import com.match.bank.exception.InsufficientFundsException;
 import com.match.bank.service.BankService;
-import com.match.bank.service.PersistedBankService;
+import com.match.bank.service.PersistedBankServiceFactory;
 
 public class Withdraw extends HttpServlet {
     static Logger log = Logger.getLogger(Withdraw.class);
@@ -27,7 +27,7 @@ public class Withdraw extends HttpServlet {
 
     @Override
     public void init(ServletConfig config) throws ServletException {
-        service = PersistedBankService.getInstance();
+        service = PersistedBankServiceFactory.getInstance();
     }
 
     /**

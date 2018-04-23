@@ -16,7 +16,7 @@ import com.match.bank.exception.AccountNotFoundException;
 import com.match.bank.exception.DataLayerException;
 import com.match.bank.exception.UserNotFoundException;
 import com.match.bank.service.BankService;
-import com.match.bank.service.PersistedBankService;
+import com.match.bank.service.PersistedBankServiceFactory;
 
 public class Delete extends HttpServlet {
     static Logger log = Logger.getLogger(Delete.class);
@@ -25,7 +25,7 @@ public class Delete extends HttpServlet {
 
     @Override
     public void init(ServletConfig config) throws ServletException {
-        service = PersistedBankService.getInstance();
+        service = PersistedBankServiceFactory.getInstance();
     }
 
     /**

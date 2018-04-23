@@ -17,7 +17,7 @@ import com.match.bank.app.xml.AccountsResponseXML;
 import com.match.bank.exception.AccountNotFoundException;
 import com.match.bank.exception.DataLayerException;
 import com.match.bank.service.BankService;
-import com.match.bank.service.PersistedBankService;
+import com.match.bank.service.PersistedBankServiceFactory;
 
 public class Deposit extends HttpServlet {
     static Logger log = Logger.getLogger(Deposit.class);
@@ -26,7 +26,7 @@ public class Deposit extends HttpServlet {
 
     @Override
     public void init(ServletConfig config) throws ServletException {
-        service = PersistedBankService.getInstance();
+        service = PersistedBankServiceFactory.getInstance();
     }
 
     /**
